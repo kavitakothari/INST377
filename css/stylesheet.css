@@ -12,7 +12,7 @@
 {
     display: flex;
     justify-content: center;
-    background-color: #B4B4B4;
+    background-image: repeating-linear-gradient( #B4B4B4, #DBAE58, #488A99)
 }
 
 .content_row
@@ -97,7 +97,7 @@
     margin-top: -60px;
 }
 
-.column_2_text--headers
+.column_2_content--headers
 {
     display: block;
     font-family: 'Courier New', Courier, monospace;
@@ -107,7 +107,7 @@
     /* padding-top: 10px; */
 }
 
-.column_2_text--content
+.column_2_content--content
 {
     color: white;
     font-size: 14px;

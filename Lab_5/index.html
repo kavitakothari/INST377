@@ -11,19 +11,12 @@
     <div class="wrapper">
       <div class="header">Test JSON page</div>
       <!-- <button class="button" onclick="loadData()">Load Some JSON</button> -->
-      <button class="button" onclick="console.log('You haven\'t written a function yet!');">Click me to replace list entries</button>
+      <button class="button" onclick="randomCountries()">Click me to replace list entries</button>
       <div class="content">
         <ul class="instructions">
-          <li>Delete and re-clone the class repository</li>
-          <li>Open <span class="code">lab_5_json.html</span> in your browser</li>
-          <li>Open your developer tools and look at the logged data</li>
-          <li>In your console, write code to:
-            <ol>
-              <li>At the click of the button above</li>
-              <li>Loop through the 'countries' variable</li>
-              <li>Replace this list's entries with country names</li>
-              <li>Now, limit the number of countries listed to fifty</li>
-              <li>Randomize which fifty countries are displayed on load</li>
+          <li>50 Random Country Names:
+            <ol id="country-list">
+              
             </ol>
           </li>
         </ul>
@@ -279,6 +272,28 @@
       { "name": "Zimbabwe", "code": "ZW" }
     ]
     console.log("List of countries in the world", countries);
+    let j = JSON.stringify(countries)
+    let x = sessionStorage.setItem('countries', j)
+    let codes = sessionStorage.getItem('countries')
+    let codes_2 = JSON.parse(codes)
+    for(i=0 ; i<countries.length ; i++)
+    {
+      console.log(codes_2[i].code)
+    }
+
+    function randomCountries()
+    {
+      document.getElementById("country-list").innerHTML = "";
+      for(i=0 ; i<50 ; i++)
+      {
+        random_num = Math.floor(Math.random() * countries.length);
+        let node = document.createElement("LI");
+        let country_name = codes_2[random_num].name
+        let textnode = document.createTextNode(country_name);
+        node.appendChild(textnode);
+        document.getElementById("country-list").appendChild(node);
+      }
+    }
   </script>
 </body>
 

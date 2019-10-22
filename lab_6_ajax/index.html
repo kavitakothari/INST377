@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Test AJAX page</title>
+  <link rel="stylesheet" type="text/css" href="./lab_styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <div class="header">Test AJAX page</div>
+      <button class="button" onclick="loadData()">Load Some JSON</button>
+      <ol id="content">
+
+      </ol>
+      <div class="footer"></div>
+    </div>
+  </div>
+  <script>
+    function loadData() {
+
+      fetch('ajax_sample.json')
+        .then(res => res.json())
+        .then(res => res.map(c => c.name))
+        .then(names => {
+          document.getElementById("content").innerHTML = "";
+          for(i=0 ; i<15 ; i++)
+          {
+            random_num = Math.floor(Math.random() * 200);
+            let node = document.createElement("LI");
+            let country_name = names[random_num]
+            let textnode = document.createTextNode(country_name);
+            node.appendChild(textnode);
+            document.getElementById("content").appendChild(node);
+        }});
+    }
+  </script>
+</body>
+
+</html>
+
+<!-- for(i=0 ; i<50 ; i++)
+      {
+        random_num = Math.floor(Math.random() * countries.length);
+        let node = document.createElement("LI");
+        let country_name = codes_2[random_num].name
+        let textnode = document.createTextNode(country_name);
+        node.appendChild(textnode);
+        document.getElementById("country-list").appendChild(node);
+      }
+    } -->
+
+    <!-- then(codes => document.querySelector(".content").innerText = codes); -->

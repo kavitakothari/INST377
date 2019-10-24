@@ -289,7 +289,8 @@
         random_num = Math.floor(Math.random() * countries.length);
         let node = document.createElement("LI");
         let country_name = codes_2[random_num].name
-        let textnode = document.createTextNode(country_name);
+        let country_code = codes_2[random_num].code
+        let textnode = document.createTextNode(country_code + " " + country_name);
         node.appendChild(textnode);
         document.getElementById("country-list").appendChild(node);
       }

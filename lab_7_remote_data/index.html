@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Test AJAX page</title>
+  <link rel="stylesheet" type="text/css" href="./lab_styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <div class="header">UMD Bus Routes</div>
+      <button class="button" onclick="loadData()">Load Some JSON</button>
+      <ul id="content">
+
+      </ul>
+      <div class="footer"></div>
+    </div>
+  </div>
+  <script>
+    function loadData() {
+      fetch('https://api.umd.io/v0/bus/routes')
+        .then(res => res.json())
+        .then(routes => routes.map(r => r.route_id))
+        .then(routes => {
+          fetch('https://api.umd.io/v0/bus/routes')
+          .then(res => res.json())
+          .then(route_names => route_names.map(r_name => r_name.title))
+          .then(route_names => {
+          document.getElementById("content").innerHTML = "";
+          for(i=0 ; i < routes.length ; i++)
+          {
+            let node = document.createElement("LI");
+            let route_code = routes[i]
+            let route_name = route_names[i]
+            let textnode = document.createTextNode(route_code + ": " + route_name);
+            node.appendChild(textnode);
+            document.getElementById("content").appendChild(node);
+          }
+          //let s = route_code[5].toString() + " " + route_names[5]
+          // num_code = route_code[7].toString();
+          rname = route_names[5].split(" ")
+          rn = rname[1]
+          console.log(rn)
+          document.querySelector(".header").innerText += " " + routes[5] + ": " +  rn
+          }
+        
+          )
+        return routes
+        });
+        }
+  </script>
+</body>
+
+</html>

@@ -33,9 +33,22 @@
             let node = document.createElement("LI");
             let route_code = routes[i]
             let route_name = route_names[i]
-            let textnode = document.createTextNode(route_code + ": " + route_name);
-            node.appendChild(textnode);
-            document.getElementById("content").appendChild(node);
+            let route_name_array = route_name.split(" ")
+            console.log(route_name_array)
+            if (route_name_array.length > 1)
+            {
+              route_name_array.shift()
+              route_name_array = route_name_array.join(" ")
+              let textnode = document.createTextNode(route_code + ": " + route_name_array);
+              node.appendChild(textnode);
+              document.getElementById("content").appendChild(node);
+            }
+            else
+            {
+              let textnode = document.createTextNode(route_code + ": " + route_name);
+              node.appendChild(textnode);
+              document.getElementById("content").appendChild(node);
+            }
           }
           //let s = route_code[5].toString() + " " + route_names[5]
           // num_code = route_code[7].toString();
